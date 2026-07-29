@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 include('addons.class.php');
+$link = isset($LOADMYSQL) && $LOADMYSQL instanceof mysqli ? $LOADMYSQL : null;
 
 if (!isset($link) || !($link instanceof mysqli)) {
     die('Não foi possível acessar o banco do MK-AUTH.');
