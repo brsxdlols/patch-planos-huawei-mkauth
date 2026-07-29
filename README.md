@@ -15,7 +15,9 @@ cada minuto.
 Execute como `root`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/brsxdlols/patch-planos-huawei-mkauth/main/install.sh | bash
+curl -fsSL -H 'Accept: application/vnd.github.raw' \
+  https://api.github.com/repos/brsxdlols/patch-planos-huawei-mkauth/contents/install.sh |
+  bash
 ```
 
 ## Verificação
@@ -29,7 +31,9 @@ tail -n 50 /var/log/patch-planos-huawei.log
 ## Remoção
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/brsxdlols/patch-planos-huawei-mkauth/main/uninstall.sh | bash
+curl -fsSL -H 'Accept: application/vnd.github.raw' \
+  https://api.github.com/repos/brsxdlols/patch-planos-huawei-mkauth/contents/uninstall.sh |
+  bash
 ```
 
 Por segurança, a remoção não apaga os atributos já sincronizados no banco.
