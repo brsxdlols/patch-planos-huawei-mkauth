@@ -28,7 +28,7 @@ down_value="${down}000"
 
 mysql --defaults-extra-file=/root/planos/mysql.cnf <<SQL
 DELETE FROM radgroupreply
- WHERE BINARY groupname = BINARY CONVERT(FROM_BASE64('${plano_b64}') USING utf8mb4)
+ WHERE HEX(groupname) = HEX(FROM_BASE64('${plano_b64}'))
    AND attribute IN ('Huawei-Input-Average-Rate', 'Huawei-Output-Average-Rate');
 
 INSERT INTO radgroupreply (groupname, attribute, op, value)
