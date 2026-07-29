@@ -2,6 +2,16 @@
 declare(strict_types=1);
 
 include('addons.class.php');
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+if (empty($_SESSION['MM_Usuario'])) {
+    http_response_code(403);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['ok' => false, 'error' => 'Sessão administrativa necessária.']);
+    exit;
+}
+require_once('/opt/mk-auth/include/conexao.php');
 $link = isset($LOADMYSQL) && $LOADMYSQL instanceof mysqli ? $LOADMYSQL : null;
 
 header('Content-Type: application/json; charset=utf-8');
