@@ -8,11 +8,7 @@ FreeRADIUS:
 
 O instalador copia os scripts para `/root/planos`, cria a trigger que normaliza
 o MAC dos clientes em letras minúsculas e configura a execução automática a
-cada minuto. Também instala o addon **Huawei Online** no painel do MK-AUTH.
-
-O addon permite selecionar o NAS Huawei e apresenta clientes conectados,
-tráfego acumulado e taxas calculadas entre dois pacotes RADIUS
-`Interim-Update`.
+cada minuto.
 
 ## Instalação
 
