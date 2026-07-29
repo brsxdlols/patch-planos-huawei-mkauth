@@ -1,6 +1,14 @@
 <?php
 declare(strict_types=1);
 include('addons.class.php');
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+if (empty($_SESSION['MM_Usuario'])) {
+    header('Location: /admin/');
+    exit;
+}
+require_once('/opt/mk-auth/include/conexao.php');
 $link = isset($LOADMYSQL) && $LOADMYSQL instanceof mysqli ? $LOADMYSQL : null;
 
 if (!isset($link) || !($link instanceof mysqli)) {
