@@ -37,21 +37,6 @@ for script in att-planos-huawei.sh planos.sh att-planos.sh; do
   chmod 700 "${INSTALL_DIR}/${script}"
 done
 
-ADDON_DIR="/opt/mk-auth/admin/addons/huawei_online"
-mkdir -p "$ADDON_DIR"
-for addon_file in index.php api.php manifest.json; do
-  curl -fsSL \
-    -H 'Accept: application/vnd.github.raw' \
-    "${REPO_API}/addon/huawei_online/${addon_file}?ref=main" \
-    -o "${ADDON_DIR}/${addon_file}"
-done
-curl -fsSL \
-  -H 'Accept: application/vnd.github.raw' \
-  "${REPO_API}/addon/addon_huawei_online.js?ref=main" \
-  -o /opt/mk-auth/admin/addons/addon_huawei_online.js
-chown -R www-data:www-data "$ADDON_DIR" /opt/mk-auth/admin/addons/addon_huawei_online.js
-chmod 640 "$ADDON_DIR"/* /opt/mk-auth/admin/addons/addon_huawei_online.js
-
 mysql --defaults-extra-file="${INSTALL_DIR}/mysql.cnf" <<'SQL'
 DROP TRIGGER IF EXISTS sis_cliente_lowercase_mac;
 DELIMITER //
