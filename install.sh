@@ -5,6 +5,7 @@ REPO_RAW="${PATCH_HUAWEI_REPO_RAW:-https://raw.githubusercontent.com/brsxdlols/p
 INSTALL_DIR="/root/planos"
 CRON_TAG="# patch-planos-huawei-mkauth"
 CRON_LINE="*/1 * * * * sh ${INSTALL_DIR}/att-planos-huawei.sh >> /var/log/patch-planos-huawei.log 2>&1 ${CRON_TAG}"
+CACHE_BUSTER="$(date +%s)"
 
 if [ "$(id -u)" -ne 0 ]; then
   echo "Erro: execute este instalador como root." >&2
@@ -30,7 +31,7 @@ EOF
 chmod 600 "${INSTALL_DIR}/mysql.cnf"
 
 for script in att-planos-huawei.sh planos.sh att-planos.sh; do
-  curl -fsSL "${REPO_RAW}/planos/${script}" -o "${INSTALL_DIR}/${script}"
+  curl -fsSL "${REPO_RAW}/planos/${script}?v=${CACHE_BUSTER}" -o "${INSTALL_DIR}/${script}"
   chmod 700 "${INSTALL_DIR}/${script}"
 done
 
